@@ -1,12 +1,14 @@
 #!/usr/bin/env python3
-from typing import Dict, Any, TypeVar, Union
-from typing import Any, Dict, TypeVar
 
+from typing import Dict, Any, Union, TypeVar
+
+K = TypeVar('K')
+V = TypeVar('V')
 T = TypeVar('T')
 
 
-def safely_get_value(dct: Dict[Any, T], key: Any, default: Union[T, None]
-                     = None) -> Union[T, None]:
+def safely_get_value(dct: Dict[K, V], key: Any, default:
+                     Union[T, None] = None) -> Union[V, T]:
     """Returns the value associated with the given key in a dictionary, or
     a default value if the key is not present in the dictionary.
 
