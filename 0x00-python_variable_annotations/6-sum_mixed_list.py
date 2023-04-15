@@ -4,7 +4,7 @@ a mixed list of numbers"""
 from typing import List
 
 
-def summ_mixed_list(mxd_lst: List[int or float]) -> float:
+def sum_mixed_list(mxd_lst: List[int or float]) -> float:
     """This function returns the sum of a mixed list of numbers
 
     Args:
