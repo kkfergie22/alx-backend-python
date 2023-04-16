@@ -1,4 +1,8 @@
 #!/usr/bin/env python3
+"""
+This module contains a function which safely gets a value from a dictionary.
+"""
+
 from typing import TypeVar, Mapping, Any, Union
 
 K = TypeVar('K')
@@ -9,7 +13,8 @@ T = TypeVar('T')
 def safely_get_value(dct: Mapping,
                      key: Any, default:
                      Union[T, None] = None) -> Union[Any, T]:
-    """Safely gets a value from a dictionary.
+    """
+    Safely gets a value from a dictionary.
 
     Args:
         dct: A mapping containing the key-value pairs.
