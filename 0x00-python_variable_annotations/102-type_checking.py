@@ -1,8 +1,11 @@
 #!/usr/bin/env python3
-from typing import Tuple
+
+"""Zoom in a given list by repeating each element `factor` times."""
+
+from typing import Tuple, List
 
 
-def zoom_array(lst: Tuple[int, ...], factor: int = 2) -> Tuple[int, ...]:
+def zoom_array(lst: Tuple, factor: int = 2) -> List:
     """Zoom in a given list by repeating each element `factor` times.
 
     Args:
@@ -15,7 +18,7 @@ def zoom_array(lst: Tuple[int, ...], factor: int = 2) -> Tuple[int, ...]:
     Raises:
         TypeError: If the elements of `lst` are not integers."""
 
-    zoomed_in: Tuple[int, ...] = tuple([
+    zoomed_in: List = list([
         item for item in lst
         for i in range(factor)
     ])
