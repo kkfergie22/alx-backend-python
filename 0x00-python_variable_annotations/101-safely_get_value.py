@@ -1,28 +1,25 @@
-#!/usr/bin/env python3
-
-from typing import Mapping, Union, TypeVar
+from typing import TypeVar, Mapping, Any, Union
 
 K = TypeVar('K')
 V = TypeVar('V')
 T = TypeVar('T')
 
 
-def safely_get_value(dct: Mapping[K, V], key: K, default:
-                     Union[T, None] = None) -> Union[V, T]:
-    """Returns the value associated with the given key in a dictionary, or
-    a default value if the key is not present in the dictionary.
+def safely_get_value(dct: Mapping,
+                     key: Any, default:
+                     Union[T, None] = None) -> Union[Any, T]:
+    """Safely gets a value from a dictionary.
 
     Args:
-        dct (Dict[K, V]): The dictionary to search.
-        key (K): The key to look up.
-        default (V, optional): The value to return if the key is not present.
-            Defaults to None.
+        dct: A mapping containing the key-value pairs.
+        key: The key to look up in the dictionary.
+        default: The default value to return
+          if the key is not found. Defaults to None.
 
     Returns:
-        V: The value associated with the key in the dictionary,
-        or the default value.
+        The value associated with the key in the dictionary
+        if the key is found, otherwise the default value.
     """
-
     if key in dct:
         return dct[key]
     else:
