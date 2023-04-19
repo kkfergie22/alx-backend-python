@@ -1,4 +1,6 @@
 #!/usr/bin/env python3
+
+""" Measure the runtime """
 import time
 from typing import List
 import asyncio
