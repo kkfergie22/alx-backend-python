@@ -24,3 +24,13 @@ class TestAccessNestedMap(unittest.TestCase):
     ) -> None:
         """Test for access_nested_map function"""
         self.assertEqual(access_nested_map(nested_map, path), expected_output)
+
+    def test_access_nested_map_exception(self, nested_map, path):
+        """
+        Test that access_nested_map raises a KeyError
+        when the given key is not found in the nested map.
+        """
+        with self.assertRaises(KeyError) as context:
+            access_nested_map(nested_map, path)
+        expected_error_message = f"KeyError: '{path[-1]}'"
+        self.assertEqual(str(context.exception), expected_error_message)
