@@ -82,37 +82,14 @@ class TestGetJson(unittest.TestCase):
 
 
 class TestMemoize(unittest.TestCase):
-    """
-    This class contains unit tests for the memoize decorator.
-    """
-
     def test_memoize(self) -> None:
-        """
-        Test that memoize caches function calls.
-
-        Returns:
-            None
-        """
         class TestClass:
             def a_method(self) -> int:
-                """
-                A method that returns 42.
-
-                Returns:
-                    int: The integer value 42.
-                """
                 return 42
 
             @memoize
             def a_property(self) -> int:
-                """
-                A memoized property that calls a_method and returns its result.
-
-                Returns:
-                    int: The integer value returned by a_method.
-                """
                 return self.a_method()
-
         # Mock the a_method function
         with patch.object(TestClass, 'a_method') as\
                 mock_a_method:
