@@ -49,36 +49,36 @@ class TestAccessNestedMap(unittest.TestCase):
             access_nested_map(nested_map, path)
 
 
-# class TestGetJson(unittest.TestCase):
-#     """
-#     This class contains unit tests for the get_json function.
-#     """
+class TestGetJson(unittest.TestCase):
+    """
+    This class contains unit tests for the get_json function.
+    """
 
-#     @patch('requests.get')
-#     @parameterized.expand([
-#         ("http://example.com", {"payload": True}),
-#         ("http://holberton.io", {"payload": False})
-#     ])
-#     def test_get_json(self, test_url: str, test_payload: dict, mock_get: Mock)\
-#             -> None:
-#         """
-#         Test that the get_json function returns the expected result.
+    @parameterized.expand([
+        ("http://example.com", {"payload": True}),
+        ("http://holberton.io", {"payload": False})
+    ])
+    def test_get_json(self, test_url: str, test_payload: dict, mock_get: Mock)\
+            -> None:
+        """
+        Test that the get_json function returns the expected result.
 
-#         Args:
-#         - test_url (str): The URL to pass to get_json.
-#         - test_payload (dict): The expected response from get_json.
-#         - mock_get (Mock): A mocked version of requests.get.
+        Args:
+        - test_url (str): The URL to pass to get_json.
+        - test_payload (dict): The expected response from get_json.
+        - mock_get (Mock): A mocked version of requests.get.
 
-#         Returns:
-#         - None
-#         """
-#         mock_json = Mock(return_value=test_payload)
-#         mock_get.return_value = Mock(json=mock_json)
+        Returns:
+        - None
+        """
+        with patch('requests.get') as mock_get:
+            mock_json = Mock(return_value=test_payload)
+            mock_get.return_value = Mock(json=mock_json)
 
-#         result = get_json(test_url)
+            result = get_json(test_url)
 
-#         mock_get.assert_called_once_with(test_url)
-#         self.assertEqual(result, test_payload)
+            mock_get.assert_called_once_with(test_url)
+            self.assertEqual(result, test_payload)
 
 
 # class TestMemoize(unittest.TestCase):
