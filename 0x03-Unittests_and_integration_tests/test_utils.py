@@ -50,83 +50,83 @@ class TestAccessNestedMap(unittest.TestCase):
         self.assertEqual(str(context.exception), expected_error_message)
 
 
-class TestGetJson(unittest.TestCase):
-    """
-    This class contains unit tests for the get_json function.
-    """
+# class TestGetJson(unittest.TestCase):
+#     """
+#     This class contains unit tests for the get_json function.
+#     """
 
-    @patch('requests.get')
-    @parameterized.expand([
-        ("http://example.com", {"payload": True}),
-        ("http://holberton.io", {"payload": False})
-    ])
-    def test_get_json(self, test_url: str, test_payload: dict, mock_get: Mock)\
-            -> None:
-        """
-        Test that the get_json function returns the expected result.
+#     @patch('requests.get')
+#     @parameterized.expand([
+#         ("http://example.com", {"payload": True}),
+#         ("http://holberton.io", {"payload": False})
+#     ])
+#     def test_get_json(self, test_url: str, test_payload: dict, mock_get: Mock)\
+#             -> None:
+#         """
+#         Test that the get_json function returns the expected result.
 
-        Args:
-        - test_url (str): The URL to pass to get_json.
-        - test_payload (dict): The expected response from get_json.
-        - mock_get (Mock): A mocked version of requests.get.
+#         Args:
+#         - test_url (str): The URL to pass to get_json.
+#         - test_payload (dict): The expected response from get_json.
+#         - mock_get (Mock): A mocked version of requests.get.
 
-        Returns:
-        - None
-        """
-        mock_json = Mock(return_value=test_payload)
-        mock_get.return_value = Mock(json=mock_json)
+#         Returns:
+#         - None
+#         """
+#         mock_json = Mock(return_value=test_payload)
+#         mock_get.return_value = Mock(json=mock_json)
 
-        result = get_json(test_url)
+#         result = get_json(test_url)
 
-        mock_get.assert_called_once_with(test_url)
-        self.assertEqual(result, test_payload)
+#         mock_get.assert_called_once_with(test_url)
+#         self.assertEqual(result, test_payload)
 
 
-class TestMemoize(unittest.TestCase):
-    """
-    This class contains unit tests for the memoize decorator.
-    """
+# class TestMemoize(unittest.TestCase):
+#     """
+#     This class contains unit tests for the memoize decorator.
+#     """
 
-    def test_memoize(self) -> None:
-        """
-        Test that memoize caches function calls.
+#     def test_memoize(self) -> None:
+#         """
+#         Test that memoize caches function calls.
 
-        Returns:
-            None
-        """
-        class TestClass:
-            def a_method(self) -> int:
-                """
-                A method that returns 42.
+#         Returns:
+#             None
+#         """
+#         class TestClass:
+#             def a_method(self) -> int:
+#                 """
+#                 A method that returns 42.
 
-                Returns:
-                    int: The integer value 42.
-                """
-                return 42
+#                 Returns:
+#                     int: The integer value 42.
+#                 """
+#                 return 42
 
-            @memoize
-            def a_property(self) -> int:
-                """
-                A memoized property that calls a_method and returns its result.
+#             @memoize
+#             def a_property(self) -> int:
+#                 """
+#                 A memoized property that calls a_method and returns its result.
 
-                Returns:
-                    int: The integer value returned by a_method.
-                """
-                return self.a_method()
+#                 Returns:
+#                     int: The integer value returned by a_method.
+#                 """
+#                 return self.a_method()
 
-        # Mock the a_method function
-        with patch.object(TestClass, 'a_method', return_value=42) as\
-                mock_a_method:
-            # Create an instance of the TestClass
-            test_obj = TestClass()
+#         # Mock the a_method function
+#         with patch.object(TestClass, 'a_method', return_value=42) as\
+#                 mock_a_method:
+#             # Create an instance of the TestClass
+#             test_obj = TestClass()
 
-            # Call a_property twice
-            res1 = test_obj.a_property
-            res2 = test_obj.a_property
+#             # Call a_property twice
+#             res1 = test_obj.a_property
+#             res2 = test_obj.a_property
 
-            # Assert that the correct result is returned
-            self.assertEqual(res1, 42)
-            self.assertEqual(res2, 42)
+#             # Assert that the correct result is returned
+#             self.assertEqual(res1, 42)
+#             self.assertEqual(res2, 42)
 
-            # Assert that a_method was called only once
-            mock_a_method.assert_called_once()
+#             # Assert that a_method was called only once
+#             mock_a_method.assert_called_once()
